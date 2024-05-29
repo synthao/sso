@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "sso.v1";
+
+service Service {
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+  rpc Authorize(AuthorizeRequest) returns (AuthorizeResponse);
+  rpc Refresh(RefreshTokenRequest) returns (RefreshTokenResponse);
+  rpc IsAuthorized(IsAuthorizedRequest) returns (IsAuthorizedResponse);
+}
+
+message AuthenticateRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message AuthenticateResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+}
+
+message RefreshTokenResponse {
+    string accessToken = 1;
+    string refreshToken = 2;
+}
+
+message AuthorizeRequest {
+  string token = 1;
+}
+
+message AuthorizeResponse {
+  int32 user_id = 1;
+}
+
+message RefreshTokenRequest {
+  string refreshToken = 1;
+}
+
+message IsAuthorizedRequest {
+    string token = 1;
+}
+
+message IsAuthorizedResponse {
+    bool is_authorized = 1;
+}

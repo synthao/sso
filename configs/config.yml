@@ -1,0 +1,12 @@
+# DEBUG
+# INFO
+# WARN
+# ERROR
+# PANIC
+# PANIC
+# FATAL
+logger:
+  level: DEBUG
+
+jwt:
+  secret: your_secret_key
