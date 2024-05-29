@@ -2,6 +2,8 @@ DOCKER_USERNAME ?= synthao
 IMAGE_NAME ?= sso
 TAG ?= latest
 
+IMAGE := ${DOCKER_USERNAME}/${IMAGE_NAME}:${TAG}
+
 .PHONY: all gen
 
 all: build push
