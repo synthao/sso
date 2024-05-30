@@ -20,7 +20,6 @@ import (
 func main() {
 	fx.New(
 		fx.Provide(
-			config.NewDBConfig,
 			config.NewLoggerConfig,
 			config.NewJWTConfig,
 			newLogger,
@@ -60,8 +59,8 @@ func createGRPCServer(lc fx.Lifecycle, logger *zap.Logger, ssoService *service.S
 	})
 }
 
-func NewDBConnection(cnf *config.DB) *sqlx.DB {
-	return sqlx.MustConnect("postgres", cnf.GetDSN())
+func NewDBConnection() *sqlx.DB {
+	return sqlx.MustConnect("postgres", config.GetDSN())
 }
 
 func newLogger(cnf *config.Logger) (*zap.Logger, error) {
